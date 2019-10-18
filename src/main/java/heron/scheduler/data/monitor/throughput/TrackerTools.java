@@ -1,7 +1,6 @@
 package heron.scheduler.data.monitor.throughput;
 
 import com.alibaba.fastjson.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,6 +8,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
+/**
+ * @author yitian
+ */
 public class TrackerTools {
 
     // get url
@@ -96,8 +98,23 @@ public class TrackerTools {
         return allThroughput;
     }
 
-    // for advertising topology
-    public static int getAllThroughput(String apiUrl1, String apiUrl2, String apiUrl3, String apiUrl4, String apiUrl5, List<String> apiList1, List<String> apiList2, List<String> apiList3, List<String> apiList4, List<String> apiList5) {
+    /**
+     * Get throughput for advertising topology
+     * @param apiUrl1
+     * @param apiUrl2
+     * @param apiUrl3
+     * @param apiUrl4
+     * @param apiUrl5
+     * @param apiList1
+     * @param apiList2
+     * @param apiList3
+     * @param apiList4
+     * @param apiList5
+     * @return
+     */
+    public static int getAllThroughput(String apiUrl1, String apiUrl2, String apiUrl3, String apiUrl4, String apiUrl5,
+                                       List<String> apiList1, List<String> apiList2, List<String> apiList3,
+                                       List<String> apiList4, List<String> apiList5) {
         // get throughput of commponent1
         String apiJson = getTrackerRestApi(apiUrl1);
         JSONObject metricsObject1 = JSONObject.parseObject(apiJson).getJSONObject("result").getJSONObject("metrics");

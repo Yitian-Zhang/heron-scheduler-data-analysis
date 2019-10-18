@@ -1,10 +1,15 @@
 package heron.scheduler.data.monitor.throughput;
 
 import heron.scheduler.data.utils.FileUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Throughput monitor
+ * Monitoring the throughput of Heron by using the REST API.
+ *
+ * @author yitian
+ */
 public class ThroughputThread extends Thread {
 
     // aurora cluster: AuroraFFDPSentenceWordCountTopology with para (2-5-5)
@@ -412,7 +417,9 @@ public class ThroughputThread extends Thread {
 
     }
 
-    // 运行方法
+    /**
+     * Invoke start() function to monitor the throughput of Heron
+     */
     @Override
     public void run() {
         while (true) {
