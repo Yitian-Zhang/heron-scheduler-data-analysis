@@ -36,6 +36,8 @@ public class ThroughputThread extends Thread {
     String trackerExecuteApiUrl4 = "";
     String trackerExecuteApiUrl5 = "";
 
+    private ThroughputMonitor throughputMonitor;
+
     // 转换方法的地方
     public ThroughputThread() {
         // running ffdp topology
@@ -425,20 +427,12 @@ public class ThroughputThread extends Thread {
         while (true) {
             try {
                 Thread.sleep(60 * 1000);
-//                count += 1;
-//                // 修改这里的url和list  ------------------------------------------------------------------------------------------------
-//                // running for sentenceWordCountTopolog that has spout, split and count bolt
-//                int currentThroughput = TrackerTools.getAllThroughput(trackerSplitExecuteApiUrl, trackerCountExecuteApiUrl, splitList, countList);
-//
-//                // running for wordcountTopology that only has one spout and one bolt named consumer
-////                int currentThroughput = TrackerTools.getAllThroughput(trackerCountExecuteApiUrl, countList);
-//                // -------------------------------------------------------------------------------------------------------------------
-//                int diffThroughput = currentThroughput - lastThroughput;
-//                System.out.println("Count: " + count + ", Last Throughput: "+ lastThroughput + " Current Throughput: " + currentThroughput + " Diff Throughput: " + diffThroughput) ;
-//                FileUtils.writeToFile(throughputFilename, "" + diffThroughput);
-//                lastThroughput = currentThroughput;
 
+                // before restructure
                 calculateThroughputForAD();
+
+                // after restructure
+                throughputMonitor.calculate();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

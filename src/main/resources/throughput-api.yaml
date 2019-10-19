@@ -1,0 +1,43 @@
+# 一个topo有多个component，需要对每个component进行监控，有需要多个rest-api
+AdvertisingTopology:
+  trackerExecuteApiUrl1: "http://218.195.228.10:8888/topologies/metrics?cluster=aurora&environ=devel&topology=AdvertisingTopology&component=event_deserializer&metricname=__execute-count/default"
+  trackerExecuteApiUrl2: "http://218.195.228.10:8888/topologies/metrics?cluster=aurora&environ=devel&topology=AdvertisingTopology&component=event_filter&metricname=__execute-count/default"
+  trackerExecuteApiUrl3: "http://218.195.228.10:8888/topologies/metrics?cluster=aurora&environ=devel&topology=AdvertisingTopology&component=event_projection&metricname=__execute-count/default"
+  trackerExecuteApiUrl4: "http://218.195.228.10:8888/topologies/metrics?cluster=aurora&environ=devel&topology=AdvertisingTopology&component=redis_join&metricname=__execute-count/default"
+  trackerExecuteApiUrl5: "http://218.195.228.10:8888/topologies/metrics?cluster=aurora&environ=devel&topology=AdvertisingTopology&component=campaign_processor&metricname=__execute-count/default"
+
+# SentenceWordCount系列topo
+BenchmarkSentenceWordCountTopology:
+  trackerExecuteApiUrl1: "http://218.195.228.24:8888/topologies/metrics?cluster=aurora&environ=devel&component=count&metricname=__execute-count/default&topology=BenchmarkSentenceWordCountTopology"
+  trackerExecuteApiUrl2: "http://218.195.228.24:8888/topologies/metrics?cluster=aurora&environ=devel&component=split&metricname=__execute-count/default&topology=BenchmarkSentenceWordCountTopology"
+
+Benchmark4SentenceWordCountTopology:
+  trackerExecuteApiUrl1: "http://218.195.228.24:8888/topologies/metrics?cluster=aurora&environ=devel&component=count&metricname=__execute-count/default&topology=Benchmark4SentenceWordCountTopology"
+  trackerExecuteApiUrl2: "http://218.195.228.24:8888/topologies/metrics?cluster=aurora&environ=devel&component=split&metricname=__execute-count/default&topology=Benchmark4SentenceWordCountTopology"
+
+AuroraFFDPSentenceWordCountTopology:
+  trackerExecuteApiUrl1: "http://218.195.228.24:8888/topologies/metrics?cluster=aurora&environ=devel&component=count&metricname=__execute-count/default&topology=AuroraFFDPSentenceWordCountTopology"
+  trackerExecuteApiUrl2: "http://218.195.228.24:8888/topologies/metrics?cluster=aurora&environ=devel&component=split&metricname=__execute-count/default&topology=AuroraFFDPSentenceWordCountTopology"
+
+ClusterSentenceWordCountTopology:
+  trackerExecuteApiUrl1: "http://218.195.228.24:8888/topologies/metrics?cluster=aurora&environ=devel&component=count&metricname=__execute-count/default&topology=ClusterSentenceWordCountTopology"
+  trackerExecuteApiUrl2: "http://218.195.228.24:8888/topologies/metrics?cluster=aurora&environ=devel&component=split&metricname=__execute-count/default&topology=ClusterSentenceWordCountTopology"
+
+# WordCount系列topo
+WordCountTopology:
+  trackerExecuteApiUrl1: "http://218.195.228.10:8888/topologies/metrics?cluster=aurora&environ=devel&component=consumer&metricname=__execute-count/default&topology=WordCountTopology"
+
+ClusterWordCountTopology:
+  trackerExecuteApiUrl1: "http://218.195.228.10:8888/topologies/metrics?cluster=aurora&environ=devel&component=consumer&metricname=__execute-count/default&topology=ClusterWordCountTopology"
+
+BenchmarkWordCountTopology:
+  trackerExecuteApiUrl1: "http://218.195.228.10:8888/topologies/metrics?cluster=aurora&environ=devel&component=consumer&metricname=__execute-count/default&topology=BenchmarkWordCountTopology"
+
+# FileWordCount系列topo
+FileWordCountTopology:
+  trackerExecuteApiUrl1: "http://218.195.228.10:8888/topologies/metrics?cluster=aurora&environ=devel&component=count&metricname=__execute-count/default&topology=FileWordCountTopology"
+  trackerExecuteApiUrl2: "http://218.195.228.10:8888/topologies/metrics?cluster=aurora&environ=devel&component=split&metricname=__execute-count/default&topology=FileWordCountTopology"
+
+# Exclamation系列topo
+ExclamationTopology:
+  trackerExecuteApiUrl: "http://218.195.228.10:8888/topologies/metrics?cluster=aurora&environ=devel&component=exclaim1&metricname=__execute-count/default&topology=ExclamationTopology"

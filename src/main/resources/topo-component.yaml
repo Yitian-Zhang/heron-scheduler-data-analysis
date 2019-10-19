@@ -1,0 +1,10 @@
+AdvertisingTopology:
+  component1: container_3_event_deserializer_3,
+    container_3_event_deserializer_3,
+    container_3_event_deserializer_3
+  component2: container_4_event_filter_16,
+    container_3_event_filter_15,
+    container_2_event_filter_14
+  component3:
+  component4:
+  component5:
