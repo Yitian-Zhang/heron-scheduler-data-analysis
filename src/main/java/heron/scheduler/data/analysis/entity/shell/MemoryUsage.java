@@ -1,4 +1,4 @@
-package heron.scheduler.data.analysis.Entity.shell;
+package heron.scheduler.data.analysis.entity.shell;
 
 public class MemoryUsage {
     private String date;

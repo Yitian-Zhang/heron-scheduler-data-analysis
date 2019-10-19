@@ -1,16 +1,14 @@
-package heron.scheduler.data.analysis.Utils;
+package heron.scheduler.data.analysis.utils;
 
-import heron.scheduler.data.analysis.Entity.*;
-import heron.scheduler.data.analysis.Entity.shell.CPUUsage;
-import heron.scheduler.data.analysis.Entity.kafka.ProducerSpeed;
-import heron.scheduler.data.analysis.Entity.shell.MemoryUsage;
-import heron.scheduler.data.monitor.throughput.EmitThread;
+import heron.scheduler.data.analysis.entity.*;
+import heron.scheduler.data.analysis.entity.shell.CPUUsage;
+import heron.scheduler.data.analysis.entity.kafka.ProducerSpeed;
+import heron.scheduler.data.analysis.entity.shell.MemoryUsage;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;

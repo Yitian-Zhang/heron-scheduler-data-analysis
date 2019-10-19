@@ -1,9 +1,8 @@
-package heron.scheduler.data.analysis.ExportTools;
+package heron.scheduler.data.analysis.exports;
 
-import heron.scheduler.data.analysis.Entity.APILatency;
-import heron.scheduler.data.analysis.Entity.Throughput;
-import heron.scheduler.data.analysis.Utils.ExportExcelUtil;
-import heron.scheduler.data.analysis.Utils.ImportFileUtil;
+import heron.scheduler.data.analysis.entity.APILatency;
+import heron.scheduler.data.analysis.utils.ExportExcelUtil;
+import heron.scheduler.data.analysis.utils.ImportFileUtil;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

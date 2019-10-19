@@ -1,4 +1,4 @@
-package heron.scheduler.data.analysis.Entity;
+package heron.scheduler.data.analysis.entity;
 
 public class APILatency {
 

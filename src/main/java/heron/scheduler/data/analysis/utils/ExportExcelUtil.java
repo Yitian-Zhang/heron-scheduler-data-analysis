@@ -1,4 +1,4 @@
-package heron.scheduler.data.analysis.Utils;
+package heron.scheduler.data.analysis.utils;
 
 import java.io.IOException;
 import java.io.OutputStream;

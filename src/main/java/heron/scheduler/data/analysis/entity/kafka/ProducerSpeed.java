@@ -1,4 +1,4 @@
-package heron.scheduler.data.analysis.Entity.kafka;
+package heron.scheduler.data.analysis.entity.kafka;
 
 public class ProducerSpeed {
     private String date;
