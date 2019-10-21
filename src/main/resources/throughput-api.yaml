@@ -1,3 +1,4 @@
+# TODO: 这里暂时没有使用，还是在代码中进行了配置
 # 一个topo有多个component，需要对每个component进行监控，有需要多个rest-api
 AdvertisingTopology:
   trackerExecuteApiUrl1: "http://218.195.228.10:8888/topologies/metrics?cluster=aurora&environ=devel&topology=AdvertisingTopology&component=event_deserializer&metricname=__execute-count/default"

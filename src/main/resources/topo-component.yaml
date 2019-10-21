@@ -1,3 +1,4 @@
+# TODO: 这里暂时没有使用，还是在代码中进行了配置
 AdvertisingTopology:
   component1: container_3_event_deserializer_3,
     container_3_event_deserializer_3,
