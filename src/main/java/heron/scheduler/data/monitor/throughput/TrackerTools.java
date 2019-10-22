@@ -13,9 +13,6 @@ import java.util.List;
  */
 public class TrackerTools {
 
-    // get url
-//    private static String trackerApiUrl = "http://192.168.209.129:8888/topologies/metrics?cluster=local&environ=default&topology=SentenceWordCountTopology&component=count&metricname=__execute-count/default";
-
     public static String getTrackerRestApi(String trackerApiUrl) {
         StringBuilder stringBuilder = new StringBuilder();
         try {
