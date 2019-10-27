@@ -34,6 +34,8 @@ public class ThroughputThread extends Thread {
     private List<String> eventProjectionList = new ArrayList<>();
     private List<String> redisJoinList = new ArrayList<>();
     private List<String> campaignProcessorList = new ArrayList<>();
+
+    // TODO: restructure this class
     private ThroughputMonitor throughputMonitor;
 
     // 转换方法的地方
@@ -60,6 +62,7 @@ public class ThroughputThread extends Thread {
         // before restructure
 //        constructComponentListForYahooBenchmark();
 
+        // TODO: restructure this class
         // after restructure codes
         throughputMonitor.init();
     }
@@ -87,6 +90,7 @@ public class ThroughputThread extends Thread {
                 // before restructure
                 calculateThroughputForAD();
 
+                // TODO: restructure this class
                 // after restructure
                 throughputMonitor.calculate();
             } catch (InterruptedException e) {
