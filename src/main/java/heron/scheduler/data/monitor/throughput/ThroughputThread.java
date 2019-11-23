@@ -8,7 +8,6 @@ import java.util.List;
 /**
  * Throughput monitor
  * Monitoring the throughput of Heron by using the REST API.
- * After reconstruction.
  *
  * @author yitian
  */
@@ -36,9 +35,6 @@ public class ThroughputThread extends Thread {
     private List<String> redisJoinList = new ArrayList<>();
     private List<String> campaignProcessorList = new ArrayList<>();
 
-    // TODO: restructure this class
-    private ThroughputMonitor throughputMonitor;
-
     // 转换方法的地方
     public ThroughputThread() {
         // running ffdp topology
@@ -61,11 +57,7 @@ public class ThroughputThread extends Thread {
 //        constructComponentListForBenchmarkWordCount();
 
         // before restructure
-//        constructComponentListForYahooBenchmark();
-
-        // TODO: restructure this class
-        // after restructure codes
-        throughputMonitor.init();
+        constructComponentListForYahooBenchmark();
     }
 
     // 运行主方法
@@ -90,10 +82,6 @@ public class ThroughputThread extends Thread {
 
                 // before restructure
                 calculateThroughputForAD();
-
-                // TODO: restructure this class
-                // after restructure
-                throughputMonitor.calculate();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -240,9 +228,6 @@ public class ThroughputThread extends Thread {
         countList.add("container_1_count_15");
     }
 
-    /**
-     *
-     */
     private void constructComponentListForWordCountWithBW() {
         trackerCountExecuteApiUrl = "http://218.195.228.10:8888/topologies/metrics?cluster=aurora&environ=devel&topology=WordCountTopology&component=consumer&metricname=__execute-count/default";
 //        trackerSplitExecuteApiUrl = "http://218.195.228.10:8888/topologies/metrics?cluster=aurora&environ=devel&topology=WordCountTopology&component=split&metricname=__execute-count/default";
@@ -491,9 +476,5 @@ public class ThroughputThread extends Thread {
         campaignProcessorList.add("container_3_campaign_processor_9");
         campaignProcessorList.add("container_2_campaign_processor_8");
         campaignProcessorList.add("container_1_campaign_processor_7");
-
-
     }
-
-
 }
