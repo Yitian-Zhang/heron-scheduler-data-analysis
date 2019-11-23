@@ -6,13 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Throughput monitor
- * Monitoring the throughput of Heron by using the REST API.
- * After reconstruction.
- *
+ * Before reconstruction
  * @author yitian
  */
-public class ThroughputThread extends Thread {
+public class ThroughputOriginThread extends Thread {
 
     // aurora cluster: AuroraFFDPSentenceWordCountTopology with para (2-5-5)
     String trackerCountExecuteApiUrl = "";
@@ -36,11 +33,8 @@ public class ThroughputThread extends Thread {
     private List<String> redisJoinList = new ArrayList<>();
     private List<String> campaignProcessorList = new ArrayList<>();
 
-    // TODO: restructure this class
-    private ThroughputMonitor throughputMonitor;
-
     // 转换方法的地方
-    public ThroughputThread() {
+    public ThroughputOriginThread() {
         // running ffdp topology
 //        constructFFDPComponentList();
 
@@ -60,12 +54,7 @@ public class ThroughputThread extends Thread {
 
 //        constructComponentListForBenchmarkWordCount();
 
-        // before restructure
-//        constructComponentListForYahooBenchmark();
-
-        // TODO: restructure this class
-        // after restructure codes
-        throughputMonitor.init();
+        constructComponentListForYahooBenchmark();
     }
 
     // 运行主方法
@@ -77,66 +66,6 @@ public class ThroughputThread extends Thread {
 //        Current all topology througput is: 9295988
 //        Last Throughput: 0 Current Throughput: 9295988 Diff Throughput: 9295988
 //        Starting write file : D:\logs\throughput-test.txt : 9295988
-    }
-
-    /**
-     * Invoke start() function to monitor the throughput of Heron
-     */
-    @Override
-    public void run() {
-        while (true) {
-            try {
-                Thread.sleep(60 * 1000);
-
-                // before restructure
-                calculateThroughputForAD();
-
-                // TODO: restructure this class
-                // after restructure
-                throughputMonitor.calculate();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    private void calculateThroughputForSWC() {
-        count += 1;
-        // 修改这里的url和list  ------------------------------------------------------------------------------------------------
-        // running for sentenceWordCountTopolog that has spout, split and count bolt
-//                int currentThroughput = TrackerTools.getAllThroughput(trackerSplitExecuteApiUrl, trackerCountExecuteApiUrl, splitList, countList);
-
-        // running for wordcountTopology that only has one spout and one bolt named consumer
-        int currentThroughput = TrackerTools.getAllThroughput(trackerCountExecuteApiUrl, countList);
-        // -------------------------------------------------------------------------------------------------------------------
-        int diffThroughput = currentThroughput - lastThroughput;
-        System.out.println("Count: " + count + ", Last Throughput: " + lastThroughput + " Current Throughput: " + currentThroughput + " Diff Throughput: " + diffThroughput);
-        FileUtils.writeToFile(throughputFilename, "" + diffThroughput);
-        lastThroughput = currentThroughput;
-    }
-
-    private void calculateThroughputForWC() {
-        count += 1;
-        // 修改这里的url和list  ------------------------------------------------------------------------------------------------
-        // running for wordcountTopology that only has one spout and one bolt named consumer
-        int currentThroughput = TrackerTools.getAllThroughput(trackerCountExecuteApiUrl, countList);
-        // -------------------------------------------------------------------------------------------------------------------
-        int diffThroughput = currentThroughput - lastThroughput;
-        System.out.println("Count: " + count + ", Last Throughput: " + lastThroughput + " Current Throughput: " + currentThroughput + " Diff Throughput: " + diffThroughput);
-        FileUtils.writeToFile(throughputFilename, "" + diffThroughput);
-        lastThroughput = currentThroughput;
-    }
-
-    private void calculateThroughputForAD() {
-
-        count += 1;
-        // 修改这里的url和list  ------------------------------------------------------------------------------------------------
-        int currentThroughput = TrackerTools.getAllThroughput(trackerExecuteApiUrl1, trackerExecuteApiUrl2, trackerExecuteApiUrl3, trackerExecuteApiUrl4, trackerExecuteApiUrl5, eventDeserializerList, eventFilterList, eventProjectionList, redisJoinList, campaignProcessorList);
-        // -------------------------------------------------------------------------------------------------------------------
-        int diffThroughput = currentThroughput - lastThroughput;
-        System.out.println("Count: " + count + ", Last Throughput: " + lastThroughput + " Current Throughput: " + currentThroughput + " Diff Throughput: " + diffThroughput);
-        FileUtils.writeToFile(throughputFilename, "" + diffThroughput);
-        lastThroughput = currentThroughput;
     }
 
     // ffdp component list
@@ -461,7 +390,6 @@ public class ThroughputThread extends Thread {
         countList.add("container_1_consumer_11");
     }
 
-
     private void constructComponentListForYahooBenchmark() {
         trackerExecuteApiUrl1 = "http://218.195.228.10:8888/topologies/metrics?cluster=aurora&environ=devel&topology=AdvertisingTopology&component=event_deserializer&metricname=__execute-count/default";
         trackerExecuteApiUrl2 = "http://218.195.228.10:8888/topologies/metrics?cluster=aurora&environ=devel&topology=AdvertisingTopology&component=event_filter&metricname=__execute-count/default";
@@ -495,5 +423,68 @@ public class ThroughputThread extends Thread {
 
     }
 
+    // 运行方法
+    @Override
+    public void run() {
+        while (true) {
+            try {
+                Thread.sleep(60 * 1000);
+//                count += 1;
+//                // 修改这里的url和list  ------------------------------------------------------------------------------------------------
+//                // running for sentenceWordCountTopolog that has spout, split and count bolt
+//                int currentThroughput = TrackerTools.getAllThroughput(trackerSplitExecuteApiUrl, trackerCountExecuteApiUrl, splitList, countList);
+//
+//                // running for wordcountTopology that only has one spout and one bolt named consumer
+////                int currentThroughput = TrackerTools.getAllThroughput(trackerCountExecuteApiUrl, countList);
+//                // -------------------------------------------------------------------------------------------------------------------
+//                int diffThroughput = currentThroughput - lastThroughput;
+//                System.out.println("Count: " + count + ", Last Throughput: "+ lastThroughput + " Current Throughput: " + currentThroughput + " Diff Throughput: " + diffThroughput) ;
+//                FileUtils.writeToFile(throughputFilename, "" + diffThroughput);
+//                lastThroughput = currentThroughput;
 
+                calculateThroughputForAD();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void calculateThroughputForSWC() {
+        count += 1;
+        // 修改这里的url和list  ------------------------------------------------------------------------------------------------
+        // running for sentenceWordCountTopolog that has spout, split and count bolt
+//                int currentThroughput = TrackerTools.getAllThroughput(trackerSplitExecuteApiUrl, trackerCountExecuteApiUrl, splitList, countList);
+
+        // running for wordcountTopology that only has one spout and one bolt named consumer
+        int currentThroughput = TrackerTools.getAllThroughput(trackerCountExecuteApiUrl, countList);
+        // -------------------------------------------------------------------------------------------------------------------
+        int diffThroughput = currentThroughput - lastThroughput;
+        System.out.println("Count: " + count + ", Last Throughput: " + lastThroughput + " Current Throughput: " + currentThroughput + " Diff Throughput: " + diffThroughput);
+        FileUtils.writeToFile(throughputFilename, "" + diffThroughput);
+        lastThroughput = currentThroughput;
+    }
+
+    private void calculateThroughputForWC() {
+        count += 1;
+        // 修改这里的url和list  ------------------------------------------------------------------------------------------------
+        // running for wordcountTopology that only has one spout and one bolt named consumer
+        int currentThroughput = TrackerTools.getAllThroughput(trackerCountExecuteApiUrl, countList);
+        // -------------------------------------------------------------------------------------------------------------------
+        int diffThroughput = currentThroughput - lastThroughput;
+        System.out.println("Count: " + count + ", Last Throughput: " + lastThroughput + " Current Throughput: " + currentThroughput + " Diff Throughput: " + diffThroughput);
+        FileUtils.writeToFile(throughputFilename, "" + diffThroughput);
+        lastThroughput = currentThroughput;
+    }
+
+    private void calculateThroughputForAD() {
+
+        count += 1;
+        // 修改这里的url和list  ------------------------------------------------------------------------------------------------
+        int currentThroughput = TrackerTools.getAllThroughput(trackerExecuteApiUrl1, trackerExecuteApiUrl2, trackerExecuteApiUrl3, trackerExecuteApiUrl4, trackerExecuteApiUrl5, eventDeserializerList, eventFilterList, eventProjectionList, redisJoinList, campaignProcessorList);
+        // -------------------------------------------------------------------------------------------------------------------
+        int diffThroughput = currentThroughput - lastThroughput;
+        System.out.println("Count: " + count + ", Last Throughput: " + lastThroughput + " Current Throughput: " + currentThroughput + " Diff Throughput: " + diffThroughput);
+        FileUtils.writeToFile(throughputFilename, "" + diffThroughput);
+        lastThroughput = currentThroughput;
+    }
 }
