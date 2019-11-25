@@ -1,8 +1,8 @@
 package heron.scheduler.data.analysis.utils;
 
 import heron.scheduler.data.analysis.entity.*;
-import heron.scheduler.data.analysis.entity.shell.CPUUsage;
 import heron.scheduler.data.analysis.entity.kafka.ProducerSpeed;
+import heron.scheduler.data.analysis.entity.shell.CPUUsage;
 import heron.scheduler.data.analysis.entity.shell.MemoryUsage;
 
 import java.io.BufferedReader;
@@ -205,7 +205,6 @@ public class ImportFileUtil {
     }
 
     /**
-     *
      * @param filename
      * @return
      * @throws IOException
