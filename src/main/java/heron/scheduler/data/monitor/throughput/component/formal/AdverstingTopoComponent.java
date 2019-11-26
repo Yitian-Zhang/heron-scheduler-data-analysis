@@ -1,6 +1,6 @@
-package heron.scheduler.data.monitor.throughput.topo;
+package heron.scheduler.data.monitor.throughput.component.formal;
 
-import heron.scheduler.data.monitor.common.TopologyComponent;
+import heron.scheduler.data.monitor.common.Component;
 import heron.scheduler.data.monitor.throughput.TrackerTools;
 import heron.scheduler.data.utils.FileUtils;
 
@@ -10,7 +10,12 @@ import java.util.List;
 /**
  * @author yitian
  */
-public class AdverstingTopologyComponent implements TopologyComponent {
+public class AdverstingTopoComponent implements Component {
+
+    // common variable
+    private final static String THROUGHPUT_DATA_FILE = "D:\\logs\\throughput-test.txt";
+    private int lastThroughput = 0;
+    private int count = 0;
 
     // trackerApiUrls
     private List<String> trackerApiUrl = new ArrayList<>();
@@ -22,12 +27,7 @@ public class AdverstingTopologyComponent implements TopologyComponent {
     private List<String> redisJoinList =  new ArrayList<>();
     private List<String> campaignProcessorList = new ArrayList<>();
 
-    // common variable
-    private int lastThroughput = 0;
-    private int count = 0;
-    private String throughputFilename = "D:\\logs\\throughput-test.txt";
-
-    public AdverstingTopologyComponent() {
+    public AdverstingTopoComponent() {
 
     }
 
@@ -100,7 +100,6 @@ public class AdverstingTopologyComponent implements TopologyComponent {
     @Override
     public void calculateThroughput() {
         count += 1;
-        // 修改这里的url和list  ------------------------------------------------------------------------------------------------
         int currentThroughput = TrackerTools.getAllThroughput(
                 trackerApiUrl.get(0),
                 trackerApiUrl.get(1),
@@ -112,10 +111,10 @@ public class AdverstingTopologyComponent implements TopologyComponent {
                 eventProjectionList,
                 redisJoinList,
                 campaignProcessorList);
-        // -------------------------------------------------------------------------------------------------------------------
+
         int diffThroughput = currentThroughput - lastThroughput;
         System.out.println("Count: " + count + ", Last Throughput: "+ lastThroughput + " Current Throughput: " + currentThroughput + " Diff Throughput: " + diffThroughput) ;
-        FileUtils.writeToFile(throughputFilename, "" + diffThroughput);
+        FileUtils.writeToFile(THROUGHPUT_DATA_FILE, "" + diffThroughput);
         lastThroughput = currentThroughput;
     }
 

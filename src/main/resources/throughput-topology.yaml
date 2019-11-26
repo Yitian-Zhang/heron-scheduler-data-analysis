@@ -1,0 +1,4 @@
+throughput-topology:
+  active: heron.scheduler.data.monitor.throughput.topo.AdverstingTopoComponent
+  topology1: test
+  topology2: test

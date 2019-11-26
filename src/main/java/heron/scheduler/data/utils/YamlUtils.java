@@ -27,7 +27,7 @@ public class YamlUtils {
         try {
             properties = new HashMap<>();
             Yaml yaml = new Yaml();
-            in = YamlUtils.class.getClassLoader().getResourceAsStream("online-rescheduling.yaml");
+            in = YamlUtils.class.getClassLoader().getResourceAsStream("throughput-topology.yaml");
             properties = yaml.loadAs(in, HashMap.class);
         } catch (Exception e) {
             e.printStackTrace();

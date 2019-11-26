@@ -3,7 +3,7 @@ package heron.scheduler.data.monitor.common;
 /**
  * @author yitian
  */
-public interface TopologyComponent {
+public interface Component {
 
     void constructOriginalComponent();
 

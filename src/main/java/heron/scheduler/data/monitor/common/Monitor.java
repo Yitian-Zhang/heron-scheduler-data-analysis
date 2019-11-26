@@ -10,7 +10,11 @@ public class Monitor {
     /**
      * 根据不同的TopologyComponent配置，计算相应拓扑的throughput
      */
-    public void calculate() {
+    public void calculateOriginThroughput() {
+    }
+
+    public void calculateRescheuleThroughput() {
+
     }
 
 }

@@ -1,0 +1,34 @@
+
+
+Throughput 监测代码情况：
+    原始单线程代码：heron.scheduler.data.monitor.throughput.ThroughputOriginThread
+
+    使用桥接模式重构后的代码情况如下：
+    1. Throughput的启动类：heron.scheduler.data.monitor.throughput.ThroughputStarter
+        负责启动原始的拓扑和重调度之后的拓扑吞吐量计算
+        区别在于重调度之后的instance分布不同，需要对heron.scheduler.data.monitor.throughput.component包下类中的
+        constructRescheduledComponent方法进行手动修改。
+        使用步骤：
+            （1）在ThroughputStarter运行startOriginThroughput
+            （2）重调度之后，需修改constructRescheduledComponent方法后，在该类中运行startRescheduledThroughtput
+
+
+    2. ThroughputMonitor extends Monitor
+        -public void calculateOriginThroughput();
+        -public void calculateRescheuleThroughput();
+        负责读取throughput-topology.yaml配置文件中的active配置的component，指明此时监测的拓扑对象
+
+
+    3. heron.scheduler.data.monitor.throughput.component包下的类 implements Component
+        -void constructOriginalComponent();
+        -void constructRescheduledComponent();
+        -void constructApiUrls();
+        -void calculateThroughput();
+        具体的实现类就是用于构建instance的分布情况，并调用tracker API进行计算
+
+
+暂时存在但无用的类：
+    1. heron.scheduler.data.monitor.throughput.ThroughputThread（代码重构后无用的单线程类）
+    2. 如下两个配置文件暂时无用：
+        throughput-api.yaml
+        topo-component.yaml
