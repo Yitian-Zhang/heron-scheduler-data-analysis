@@ -11,6 +11,11 @@ import java.util.List;
  */
 public class ThroughputOriginThread extends Thread {
 
+    private final static String THROUGHPUT_DATA_FILE = "D:\\logs\\throughput-test.txt";
+    // local test log url
+    private int lastThroughput = 0;
+    private int count = 0;
+
     // aurora cluster: AuroraFFDPSentenceWordCountTopology with para (2-5-5)
     String trackerCountExecuteApiUrl = "";
     String trackerSplitExecuteApiUrl = "";
@@ -19,13 +24,11 @@ public class ThroughputOriginThread extends Thread {
     String trackerExecuteApiUrl3 = "";
     String trackerExecuteApiUrl4 = "";
     String trackerExecuteApiUrl5 = "";
-    // local test log url
-    private String throughputFilename = "D:\\logs\\throughput-test.txt";
-    private int lastThroughput = 0;
+
     // component list for ALL topology
     private List<String> splitList = new ArrayList<>();
     private List<String> countList = new ArrayList<>();
-    private int count = 0;
+
     // component list for yahoo benchmark
     private List<String> eventDeserializerList = new ArrayList<>();
     private List<String> eventFilterList = new ArrayList<>();
@@ -60,7 +63,7 @@ public class ThroughputOriginThread extends Thread {
     // 运行主方法
     public static void main(String[] args) {
         // 启动线程
-        new ThroughputThread().start();
+        new ThroughputOriginThread().start();
 
         // 线程暂停后重启后出现如下问题：（若线程不暂定，拓扑暂停，则不会有问题）
 //        Current all topology througput is: 9295988
@@ -419,8 +422,6 @@ public class ThroughputOriginThread extends Thread {
         campaignProcessorList.add("container_3_campaign_processor_9");
         campaignProcessorList.add("container_2_campaign_processor_8");
         campaignProcessorList.add("container_1_campaign_processor_7");
-
-
     }
 
     // 运行方法
@@ -460,7 +461,7 @@ public class ThroughputOriginThread extends Thread {
         // -------------------------------------------------------------------------------------------------------------------
         int diffThroughput = currentThroughput - lastThroughput;
         System.out.println("Count: " + count + ", Last Throughput: " + lastThroughput + " Current Throughput: " + currentThroughput + " Diff Throughput: " + diffThroughput);
-        FileUtils.writeToFile(throughputFilename, "" + diffThroughput);
+        FileUtils.writeToFile(THROUGHPUT_DATA_FILE, "" + diffThroughput);
         lastThroughput = currentThroughput;
     }
 
@@ -472,7 +473,7 @@ public class ThroughputOriginThread extends Thread {
         // -------------------------------------------------------------------------------------------------------------------
         int diffThroughput = currentThroughput - lastThroughput;
         System.out.println("Count: " + count + ", Last Throughput: " + lastThroughput + " Current Throughput: " + currentThroughput + " Diff Throughput: " + diffThroughput);
-        FileUtils.writeToFile(throughputFilename, "" + diffThroughput);
+        FileUtils.writeToFile(THROUGHPUT_DATA_FILE, "" + diffThroughput);
         lastThroughput = currentThroughput;
     }
 
@@ -484,7 +485,7 @@ public class ThroughputOriginThread extends Thread {
         // -------------------------------------------------------------------------------------------------------------------
         int diffThroughput = currentThroughput - lastThroughput;
         System.out.println("Count: " + count + ", Last Throughput: " + lastThroughput + " Current Throughput: " + currentThroughput + " Diff Throughput: " + diffThroughput);
-        FileUtils.writeToFile(throughputFilename, "" + diffThroughput);
+        FileUtils.writeToFile(THROUGHPUT_DATA_FILE, "" + diffThroughput);
         lastThroughput = currentThroughput;
     }
 }
